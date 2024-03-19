@@ -1,5 +1,4 @@
 <?php
-// captcha code by: https://www.allphptricks.com/create-a-simple-captcha-script-using-php/?unapproved=61017&moderation-hash=d63af6b4beac990fd6aeb340d39716b7#comment-61017
 session_start();
 //You can customize your captcha settings here
 
@@ -11,7 +10,7 @@ $total_characters_on_image = 6;
 //The characters that can be used in the CAPTCHA code.
 //avoid all confusing characters and numbers (For example: l, 1 and i)
 $possible_captcha_letters = 'bcdfghjkmnpqrstvwxyz23456789';
-$captcha_font = 'monofont.ttf';
+$captcha_font = './monofont.ttf';
 
 $random_captcha_dots = 50;
 $random_captcha_lines = 25;
@@ -103,7 +102,7 @@ imagettftext(
 	);
 
 /* Show captcha image in the html page */
-// defining the image type to be shown in browser window
+// defining the image type to be shown in browser widow
 header('Content-Type: image/jpeg'); 
 imagejpeg($captcha_image); //showing the image
 imagedestroy($captcha_image); //destroying the image instance
