@@ -32,7 +32,7 @@ if(isset($_POST['delete_file'])) {
 		unlink($filename_ip);						 					 
 	}
 	
-	echo '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;<b>'.$_POST['delete_title'].'</b> deleted!</div>';
+	echo '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;<b>'.$_POST['delete_title'].'</b> удален!</div>';
 }
 
 /* DELETE REVIEW */
@@ -62,7 +62,7 @@ if(isset($_POST['edit_review'])) {
 	
 	// write data back to file
 	file_put_contents($reviewfile, $input);
-	echo '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;Review <b>'.$name.'</b> editted!</div>';
+	echo '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;Отзыв <b>'.$name.'</b> отредактирован!</div>';
 }
 
 /* EDIT ARTICLES */
@@ -174,7 +174,7 @@ if (isset($_POST['edit_file'])) {
 	}
 	
 			
-	echo '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;<b>'.$_POST['title'].'</b> updated!</div>';	
+	echo '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;<b>'.$_POST['title'].'</b> обновлен!</div>';	
 	
 }
 // END EDIT ARTICLES
@@ -323,19 +323,19 @@ if($entry_matches != NULL) { // found a match
 		<?php 
 		if($filter_title != NULl ) { ?>		
 			<h4 class="float-left">Titles which start with: <?php echo $filter_title; ?></h4>
-			<span class="float-right">Total: <b><?php echo $total_matches; ?></b></span>						
+			<span class="float-right">Итого: <b><?php echo $total_matches; ?></b></span>						
 		<?php 
 		}
 		
 		if($filter_category != NULl ) { ?>		
-			<h4 class="float-left">Category: <?php echo $filter_category; ?></h4>
-			<span class="float-right">Total: <b><?php echo $total_matches; ?></b></span>			
+			<h4 class="float-left">Категория: <?php echo $filter_category; ?></h4>
+			<span class="float-right">Итого: <b><?php echo $total_matches; ?></b></span>			
 		<?php 
 		}
 			
 		if($entry_search != NULl ) { ?>					
-			<h4 class="float-left">Search results for: <?php echo $entry_search; ?></h4>
-			<span class="float-right">Total: <b><?php echo $total_matches; ?></b></span>	
+			<h4 class="float-left">Результаты поиска для: <?php echo $entry_search; ?></h4>
+			<span class="float-right">Итого: <b><?php echo $total_matches; ?></b></span>	
 		<?php
 		}
 		?>
@@ -366,7 +366,7 @@ if(isset($filter_category) || isset($filter_title) || isset($entry_search)) {
 	if($matches == NULL) {
 		?>
 		<div class="nomatch">			
-			<b class="text-danger">No articles found...</b>
+			<script type="text/javascript">location="./pages/404.html";</script>
 		</div>
 		<?php
 	}
@@ -479,7 +479,7 @@ elseif( !isset($entry_search) && !isset($filter_category) && !isset($filter_titl
 			
 	}
 	else {
-		echo '<b class="text-danger">Article does not exist...</b>';
+		echo '<script type="text/javascript">location="./pages/404.html";</script>';
 	}
 }
 
