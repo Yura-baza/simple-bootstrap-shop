@@ -14,8 +14,9 @@ if($current_file == 'admin.php') {
 	$admin = true;
 }
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 
@@ -34,7 +35,7 @@ if($current_file == 'admin.php') {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <!-- API key for TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/cu9iuv1soi8lkx4dfa0qp167qpr7pw81y9rj9n42dvtj1mch/tinymce/5/tinymce.min.js"></script>
+<script src="tinymce/tinymce.min.js"></script>
 
 
 </head>
@@ -54,14 +55,16 @@ if ( window.history.replaceState ) {
 		            			
 			<div class="col-lg-3 my-4">
 				
-				<a href="logout.php" class="btn btn-danger w-100 my-4">Logout</a>
+				<a href="logout.php" class="btn btn-danger w-100 my-4">Выход</a>
+				
+				<br/><br/>
 				
 				<div class="list-group">
-					<a class="list-group-item" href="admin.php">Home / All Categories</a>
+					<a class="list-group-item" href="admin.php">Главная / Все категории</a>
 				</div>
 				<br />
 				
-				<h4>Categories</h4>								
+				<h4>Категории</h4>								
 				<!-- filter form -->							
 				<div class="list-group">
 				<?php 
@@ -73,42 +76,45 @@ if ( window.history.replaceState ) {
 				} 
 				?>				
 				</div>
-				<br />			
-				
-				<h4>Titles start with</h4>				
-				<!-- filter form -->
-				<form class="search-form" action="admin.php" method="GET" role="form">
-					<div class="input-group mb-3">					
-						<select class="surname_selectbox form-control" name="filter_title">
-							<?php 
-								$arr_length = count($all_titles); // count the number of categories
-								for ($x = 0; $x < $arr_length; $x++) {
-							?>
-							<option value="<?php echo $all_titles[$x]; ?>"><?php echo $all_titles[$x]; ?></option>
-							<?php 
-							} 
-							?>									 								
-						</select>
-						<div class="input-group-append">		
-							<button class="btn btn-primary" type="submit">Filter</button>
-						</div>	
-					</div>							
-				</form>
 				<br />
 				
-				<h4>Search Article</h4>				
+				<h4>Поиск статьи</h4>				
 				<!-- search form -->
 				<form class="search-form form-inline" action="admin.php" method="GET" role="form">	
 					<div class="input-group mb-3">
-						<input class="form-control" type="text" name="entry_search" placeholder="Search for..." />
+						<input class="form-control" type="text" name="entry_search" placeholder="Поиск..." />
 						<div class="input-group-append">				
-							<button class="btn btn-primary" type="submit">Search</button>
+							<button class="btn btn-primary" type="submit">Искать</button>
 						</div>
 					</div>							
 				</form>
-				<br />
+				
+				
+				<br /><br />	
+				<h4>Статистика сайта</h4>
+				  <a class="list-group-item">
+               <?php include ("st/stata.php"); ?>
+               </a>
+               <form method='post'> 
+               <button class="btn btn-danger w-100 my-4" type='submit' name='clear' onClick="alert">Очистить статистику</button>
+               </form>
+               
+               <a href="backup/backup.php" class="btn btn-danger w-100 my-4">Сделать бекап сайта</a>
+               <?php
+               if(isset($_POST['clear']))  
+               {    
+                $f = fopen('st/baz.dat','w'); 
+                  ftruncate($f, 0); 
+                 fclose($f);         
+               }
+                ?>
+                
+
+                <br />
+               <a class="btn btn-primary w-100" href="add.php">Добавить статью</a>
+              
 				<!-- add aricle -->
-				<a class="btn btn-primary w-100" href="add.php">Add Article</a>
+				
 															
 			</div> <!-- end col 3-->
 			
@@ -129,15 +135,19 @@ if ( window.history.replaceState ) {
 
 
 <script>
-//tiny texteditor
-tinyMCE.init({
+   //tiny texteditor
+   tinyMCE.init({
 	selector : ".tinymce",
-	plugins: "emoticons link preview wordcount",
+	plugins: "emoticons link preview wordcount ImgPen Translator lists media image link",
 	elementpath: false,
+	language: "ru",
 	
-	menubar: false,
-	toolbar: 'undo redo | bold italic underline | fontsizeselect | link | emoticons | preview | wordcount',
-	  
+	menubar: true,
+	toolbar: 'styles | undo redo | bold italic underline | fontsizeselect | link | emoticons | preview | wordcount | fontselect fontsizeselect formatselect | bold italic strikethrough forecolor backcolor | link image ImgPen media | alignleft aligncenter alignright alignjustify | numlist bullist | outdent indent removeformat | Translator TranslatorConf TranslatorReverse',
+	// toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+	// toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',   
+	// toolbar: 'numlist bullist | outdent indent removeformat | Translator TranslatorConf TranslatorReverse',
+	// toolbar: 'fontselect fontsizeselect formatselect | bold italic strikethrough forecolor backcolor',
 	height: 300,
 	force_br_newlines : true,
 	force_p_newlines : false,
@@ -145,8 +155,9 @@ tinyMCE.init({
 	paste_as_text: true,
 	
 	mobile: {
-		theme: 'silver',
+		theme: 'silver',		
 		plugins: 'emoticons link preview wordcount',
+		language: "ru",
 		toolbar: 'undo redo | bold italic underline | fontsizeselect | link | emoticons | preview | wordcount'
 	}	
 	
@@ -192,7 +203,6 @@ $('.click-trigger').on('click', function(e) {
 
 
 </script>
-
 </body>
 </html>
 
