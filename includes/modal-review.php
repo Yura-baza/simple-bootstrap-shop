@@ -6,7 +6,7 @@
 	<div class="modal-content">
 	
 		<div class="modal-header">
-			<h3 class="modal-title">Write a review for: <i><?php echo $title; ?></i></h3>
+			<h3 class="modal-title">Напишите отзыв о:<i><?php echo $title; ?></i></h3>
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 		
 		</div>
@@ -18,13 +18,13 @@
 						<!-- NAME 	-->
 						<div class="control-group form-group">
 							<div class="controls">
-								<input class="form-control name" name="name" type="text" placeholder="NAME">
+								<input class="form-control name" name="name" type="text" placeholder="Имя">
 							</div>
 						</div>						
 						<!-- MESSAGE	-->
 						<div class="control-group form-group">	
 							<div class="controls">															
-								<textarea class="tinymce form-control custom-control message" onkeyup="countChar(this)" name="message" placeholder="MESSAGE (max characters: <?php echo $max_chars; ?>)"></textarea>
+								<textarea class="tinymce form-control custom-control message" onkeyup="countChar(this)" name="message" placeholder="СООБЩЕНИЕ (максимум символов: <?php echo $max_chars; ?>)"></textarea>
 								
 							</div>
 						</div>
@@ -32,16 +32,16 @@
 						<div class="control-group form-group">
 							<div class="controls captcha_image">
 							  <img src="includes/captcha.php?rand=<?php echo rand(); ?>" id='captcha_image'>
-							  <a href='javascript: refreshCaptcha();'>Refresh captcha</a>
+							  <a href='javascript: refreshCaptcha();'>Обновить капчу</a>
 							</div>
 						</div>
 						<div class="control-group form-group">
 							<div class="controls">
-							  <input class="form-control captcha" id="cf_captcha_input" type="text" name="captcha" placeholder="Enter captcha"  required>
+							  <input class="form-control captcha" id="cf_captcha_input" type="text" name="captcha" placeholder="Введите капчу"  required>
 							</div>
 						</div>
 					
-						<button type="submit" id="cf-submit" name="submit_message" class="btn btn-primary">SUBMIT</button>							
+						<button type="submit" id="cf-submit" name="submit_message" class="btn btn-primary">Отправить</button>							
 					</form>	
 					
 		</div>
