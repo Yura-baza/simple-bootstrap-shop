@@ -1,0 +1,18 @@
+<?php
+$file = 'baz.dat';
+$line_to_delete = 'This is the line to delete';
+
+// Чтение содержимого файла в массив
+$data = file($file);
+
+// Удаление строки из массива
+foreach($data as $key => $line) {
+if(trim($line) == $line_to_delete) {
+unset($data[$key]);
+}
+}
+
+// Перезапись файла с обновленным содержимым
+file_put_contents($file, implode('', $data));
+
+?>
