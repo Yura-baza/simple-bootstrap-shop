@@ -1,31 +1,20 @@
-# simple-dynamic-bootstrap-shop
-Simple Bootstrap 4 shop; written in PHP
+# простой-динамический-бутстрап-магазин
+Простой магазин Bootstrap 4; написано на PHP
 
-Based on https://github.com/BlackrockDigital/startbootstrap-shop-homepage and 
+На основе https://github.com/BlackrockDigital/startbootstrap-shop-homepage и
 
 https://startbootstrap.com/templates/shop-homepage/
 
 
-* No databse required
-* All data stored in flat txt files
-* Tinymce textarea
-* bootstrap 4 grid
-* categories
-* rating stars
-* reviews
+* База данных не требуется.
+* Все данные хранятся в плоских текстовых файлах.
+* Текстовое поле Tinymce
+* загрузочная сетка 4
+* категории
+* рейтинг звезд
+* отзывы
 
-## How to use
-- Open **settings.php** and fill in the desired settings.
-- In **index.php** and **admin.php** place your own api key for Tinymce between the head tags (https://www.tiny.cloud/)
-- Go to **admin.php** and login with the username and password you did set in settings.php
-- Start adding articles
-
-### DEMO
-http://shop.webprofis.nl/index.php
-
-http://shop.webprofis.nl/admin.php (username: admin; passw: password1)
-
-
-
-
-
+## Как использовать
+- Откройте **settings.php** и заполните нужные настройки.
+- Перейдите в **admin.php** и войдите в систему, используя имя пользователя и пароль, которые вы установили в settings.php.
+- Начать добавлять статьи
