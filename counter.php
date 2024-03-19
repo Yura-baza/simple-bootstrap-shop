@@ -68,14 +68,14 @@ $round = ($avg - $intVal < .5) ? $intVal : round($intVal).'.5';
 		<a href="#1" class="click-trigger star-1" data-value="star-1" title="Vote 1 star">&#x2605;</a>
 	</div>
 	<div class="rating-votes float-left">
-		<?php echo $avg; ?>&nbsp;Stars Votes: <?php echo array_sum($count); ?>
+		<?php echo $avg; ?>&nbsp;звезд Голосов: <?php echo array_sum($count); ?>
 	</div>				
 </div>
 <?php if (!$error) {
-	echo '<div class="result-vote text-success">Thanks for voting!</div>';
+	echo '<div class="result-vote text-success">Спасибо за голосование!</div>';
 }
 else {
-	echo '<div class="result-vote text-danger">You have already voted!</div>';
+	echo '<div class="result-vote text-danger">Вы уже проголосовали!</div>';
 }
 ?>
 
