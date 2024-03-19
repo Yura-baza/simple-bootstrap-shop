@@ -22,7 +22,7 @@ if ( isset($_POST['captcha']) && ($_POST['captcha'] !="") ) {
 	if(strcasecmp($_SESSION['captcha'], $_POST['captcha']) != 0) {
 		// Note: the captcha code is compared case insensitively.
 		// if you want case sensitive match, update the check above to strcmp()
-		echo '<div class="alert alert-danger">Entered captcha code does not match! Kindly try again.</div>';
+		echo '<div class="alert alert-danger">Введенный код капчи не совпадает! Пожалуйста, попробуйте еще раз.</div>';
 		$error = true;	
 	}			
 }
@@ -41,11 +41,11 @@ if ( isset($_POST['message']) ) {
 	
 	// check empty message
 	if ($usermessage == NULL){				
-		echo '<div class="alert alert-danger">Message field cannot be empty!</div>';								
+		echo '<div class="alert alert-danger">Поле сообщения не может быть пустым!</div>';								
 	}
 	// check number of characters submitted
 	elseif( strlen( strip_tags($_POST['message']) ) > $max_chars ) { 
-		echo '<div class="alert alert-danger">You exceeded max number of allowed characters!</div>';			
+		echo '<div class="alert alert-danger">Вы превысили максимально допустимое количество символов!</div>';			
 		$error = true;				
 	}		
 	elseif(!$error) {
@@ -53,7 +53,7 @@ if ( isset($_POST['message']) ) {
 		$review_id = 'rev_'.uniqid(); ;
 		// put content in .txt file with linebreaks; review_id first
 		$userinput = $review_id.PHP_EOL;
-		$userinput .= date('d M Y H:i').PHP_EOL; // date				
+		$userinput .= date('d.m.y').PHP_EOL; // date				
 		$userinput .= $username.PHP_EOL; // name
 		$userinput .= $usermessage.PHP_EOL; // message
 				
@@ -72,7 +72,7 @@ if ( isset($_POST['message']) ) {
 		
 		file_put_contents($reviewfile, $userinput);
 		
-		echo '<div class="alert alert-success"><b>&check;</b>&nbsp;Your review has been posted!</div>';
+		echo '<div class="alert alert-success"><b>&check;</b>&nbsp;Ваш отзыв опубликован!</div>';
 		
 			
 	}
