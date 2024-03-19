@@ -43,17 +43,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="col-md-12">				
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Bootstrap Shop, Login Admin</h3>
+						<h3 class="panel-title">Вход в админку</h3>
 					</div>
 					<div class="panel-body">
 						<?php echo $error; ?>
 						<form  method="post" action="login.php">
 							<fieldset class="mx-auto">
 								<div class="form-group">
-									<input class="form-control" placeholder="Username: admin" name="username" type="text">
+									<input class="form-control" placeholder="Имя пользователя:" name="username" type="text">
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Password: password1" name="password" type="password" value="">
+									<input class="form-control" placeholder="Пароль:" name="password" type="password" value="">
 								</div>
 									<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
 							</fieldset>
