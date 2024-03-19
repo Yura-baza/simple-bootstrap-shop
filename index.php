@@ -1,29 +1,32 @@
 ﻿<?php include 'settings.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Site Title   -->
-<title>Simple Shop</title>
+<!-- Заголовок сайта  -->
+<title>Каталог услуг</title>
 
-<!-- some basic styling -->
+<!-- немного базового стиля -->
 <link href="css/rating.css" rel="stylesheet">
 <!-- Bootstrap css-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<!-- jQuery core -->
+<!-- ядро jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- <!-- Bootstrap js; need for modal --> 
+<!-- Бутстрап js; нужен модальный --> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- Ключивые слова --> 
+<meta name="description" content="<?php echo $title; ?>">
+<!-- Описание --> 
+<meta name="keywords" content="<?php echo $description; ?>">
 
 <!-- API key for TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/cu9iuv1soi8lkx4dfa0qp167qpr7pw81y9rj9n42dvtj1mch/tinymce/5/tinymce.min.js"></script>
-
+<script src="tinymce/tinymce.min.js"></script>
 </head>
 <body>
-<!-- prevent form resubmission after refresh -->
+<!-- запретить повторную отправку формы после обновления -->
 <script>
 if ( window.history.replaceState ) {
 	window.history.replaceState( null, null, window.location.href );
@@ -31,7 +34,6 @@ if ( window.history.replaceState ) {
 
 
 </script>
-
 <section class="section">
     <div class="container">
         <div class="row">
@@ -40,15 +42,15 @@ if ( window.history.replaceState ) {
 					
 
 				<div class="list-group my-4">
-					<a class="list-group-item" href="index.php">Home / All Categories</a>
+					<a class="list-group-item" href="index.php">Главная / Все категории</a>
 				</div>
 					
-				<h4>Categories</h4>	
+				<h4>Категории</h4>	
 			
-				<!-- filter form -->							
+				<!-- форма фильтра -->							
 				<div class="list-group">
 				<?php 
-					$arr_length = count($all_categories); // count the number of categories
+					$arr_length = count($all_categories); // подсчитайте количество категорий
 					for ($x = 0; $x < $arr_length; $x++) {
 				?>
 					<a href="index.php?filter_category=<?php echo $all_categories[$x]; ?>" class="list-group-item"><?php echo $all_categories[$x]; ?></a>
@@ -58,48 +60,32 @@ if ( window.history.replaceState ) {
 				</div>
 				<br />			
 				
-				<h4>Titles start with</h4>				
-				<!-- filter form -->
-				<form class="search-form" action="index.php" method="GET" role="form">
-					<div class="input-group mb-3">					
-						<select class="surname_selectbox form-control" name="filter_title">
-							<?php 
-								$arr_length = count($all_titles); // count the number of categories
-								for ($x = 0; $x < $arr_length; $x++) {
-							?>
-							<option value="<?php echo $all_titles[$x]; ?>"><?php echo $all_titles[$x]; ?></option>
-							<?php 
-							} 
-							?>									 								
-						</select>
-						<div class="input-group-append">		
-							<button class="btn btn-primary" type="submit">Filter</button>
-						</div>	
-					</div>							
-				</form>
-				<br />
-				
-				<h4>Search Article</h4>				
+				<h4>Поиск статьи</h4>				
 				<!-- search form -->
 				<form class="search-form form-inline" action="index.php" method="GET" role="form">	
 					<div class="input-group mb-3">
-						<input class="form-control" type="text" name="entry_search" placeholder="Search for..." />
+						<input class="form-control" type="text" name="entry_search" placeholder="Поиск..." />
 						<div class="input-group-append">				
-							<button class="btn btn-primary" type="submit">Search</button>
+							<button class="btn btn-primary" type="submit">Искать</button>
 						</div>
 					</div>							
 				</form>
-				
-															
+				<br />	
+				<h4>Статистика сайта</h4>
+				  <a class="list-group-item">
+               <?php include ("st/stata.php"); ?>
+               </a>
+										
+
 			</div> <!-- end col 3-->
 			
 			<div class="col-lg-9 my-4"> 
 			
-				<div class="result my-4"></div>	<!-- ajax callback -->
+				<div class="result my-4"></div>	<!-- обратный вызов ajax-->
 				
 				<?php include "entries.php"; ?>
 				<div class="clearfix"></div><br />											
-				
+
 				<?php include 'includes/pagination.php'; ?>
 								
 			</div> <!-- end col 9 -->
@@ -114,14 +100,14 @@ if ( window.history.replaceState ) {
 
 <div class="toast" data-autohide="false">
   <div class="toast-header">
-    <strong class="mr-auto text-primary">Thanks for voting!</strong>    
+    <strong class="mr-auto text-primary">Спасибо за голосование!</strong>    
     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
   </div>
  
 </div>
 
 <script>
-//tiny texteditor
+//tiny текстовый редактор
 tinyMCE.init({
 	selector : ".tinymce",
 	plugins: "emoticons link preview wordcount",
@@ -146,7 +132,7 @@ tinyMCE.init({
 
 
 function equal_height() {   
-	// Equal Card Height, Text Height and Title Height
+	// Одинаковая высота карточки, высота текста и высота заголовка
 	$('.equalheight').jQueryEqualHeight('.card .card-body .card-title');
 	$('.equalheight').jQueryEqualHeight('.card .card-body .card-text');
 	$('.equalheight').jQueryEqualHeight('.card');
@@ -159,13 +145,13 @@ $(window).resize(function(event) {
 	equal_height();
 });
 
-//Refresh Captcha
+//Обновить капчу
 function refreshCaptcha(){
     var img = document.images['captcha_image'];
     img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
 }
 
-// ajax rating stars
+// звезды рейтинга ajax
 $('.click-trigger').on('click', function(e) {
 	e.preventDefault();
 	
@@ -185,10 +171,10 @@ $('.click-trigger').on('click', function(e) {
 
 });
 
-// ajax write review		
+// ajax написать отзыв		
 $('#review').on('submit', function(e){
 	e.preventDefault();
-	tinyMCE.triggerSave(); // save TinyMCE instances before sending data
+	tinyMCE.triggerSave(); // сохраните экземпляры TinyMCE перед отправкой данных
 	
 	var file_id = $(".file_id").val();
 	var name = $(".name").val();
@@ -210,9 +196,9 @@ $('#review').on('submit', function(e){
 
 		success: function(data){
 			$('.result').html(data);
-			$('.modal').modal('hide'); // close modal
-			$(".review-body").load(" .review-body > *"); // reload div review-body from reviews
-			$(".captcha_image").load(" .captcha_image"); // reload captcha image
+			$('.modal').modal('hide'); // закрыть модальное окно
+			$(".review-body").load(" .review-body > *"); // перезагрузить тело обзора div из обзоров
+			$(".captcha_image").load(" .captcha_image"); // перезагрузить изображение с кодом
 			
 		},
 		complete:function(){
@@ -227,10 +213,16 @@ $('#review').on('submit', function(e){
 
 <?php if($_GET['filter_category'] != NULL) { ?>
 <script>
-// add class "acitve" to list-group for chosen category
+// добавить класс «активный» в группу списков для выбранной категории
 $('.list-group-item:contains("<?php echo $_GET['filter_category']; ?>")').addClass('active');
 </script>
 <?php } ?>
+
+<!-- Ключивые слова --> 
+<meta name="description" content="<?php echo $title; ?>">
+<!-- Описание --> 
+<meta name="keywords" content="<?php echo $description; ?>">
+
 
 
 </body>
