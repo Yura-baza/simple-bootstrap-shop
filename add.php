@@ -1,5 +1,5 @@
 ﻿<?php 
-// check login
+// проверить вход
 session_start();
 if(!isset($_SESSION['shop_login'])){
 	header("Location: login.php");
@@ -12,7 +12,7 @@ include('settings.php');
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	
-	// create dir entries and rating if not exists
+	// создать записи в каталоге и рейтинг, если он не существует
 	if (!is_dir('./data/entries/')) {
 		mkdir('./data/entries/', 0777, true);
 	}
@@ -21,15 +21,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	
 	
-	// set a unique id as name of txt file
+	// установите уникальный идентификатор в качестве имени текстового файла
 	$unique_id = 'id-'.date('YmdHis');
 
-	// category block
+	// блок категорий
 	if (isset($_POST['category'])) {		
 		$category = $_POST['category'];	
 	}
 
-	// title block
+	// Названия блока
 	if (isset($_POST['title'])) {	
 		if($_POST['title'] == ''){
 			$title = '';
@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	}
 
-	// price block
+	// ценовой блок
 	if (isset($_POST['price'])) {	
 		if($_POST['price'] == '') {
 			$price = '';
@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	}
 
-	// description block
+	// блок описания
 	if (isset($_POST['description'])) {	
 		if($_POST['description'] == '') {
 			$description = '';
@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	
-	// main image upload
+	// загрузка основного изображения
 	if(!empty($_FILES['main_image'])) {
 		$filename = $_FILES['main_image']['name'];
 		$rename_main_image = end(explode('.', $filename )); // strip name of the image
@@ -67,7 +67,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	
 					
-	// put form content in .txt file with linebreaks; unique_id first
+	// поместить содержимое формы в файл .txt с переносами строк; уникальный_ид первый
 	$input_form = $unique_id.PHP_EOL;
 	$input_form .= $category.PHP_EOL;
 	$input_form .= $title.PHP_EOL;
@@ -77,43 +77,43 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 							
 	$entryfile = 'data/entries/'.$unique_id.'.txt';
-	//write data to file
+	//записать данные в файл
 	file_put_contents($entryfile,$input_form );
 	
 
-	// other images	upload; append to existing file
+	// загрузка других изображений; добавить к существующему файлу
 	$countfiles = count($_FILES['image']['name']);
 			
 	for($i=0; $i<$countfiles; $i++) {
 		$filename = $_FILES['image']['name'][$i];
  
-		$rename_image = end(explode('.', $filename )); // strip name of the image
+		$rename_image = end(explode('.', $filename )); // удалить название изображения
  
-		$image_destination = 'uploads/image_'  .uniqid(). '.' . $rename_image; // rename image with unique_id
-		// Upload image
+		$image_destination = 'uploads/image_'  .uniqid(). '.' . $rename_image; // переименовать изображение с unique_id
+		// Загрузить изображение
 		move_uploaded_file($_FILES['image']['tmp_name'][$i] , $image_destination);
 			
-		$input_image = $image_destination.'||'; // seperate each image with ||
+		$input_image = $image_destination.'||'; // отделить каждое изображение с помощью ||
 							
-		// write images to txt file		
+		// создать файл рейтинга		
 		file_put_contents($entryfile, $input_image, FILE_APPEND);
  
 	}
 		
 	
-	// create rating file
+	// создать файл рейтинга
 	$input_rating = 'star-1||0'.PHP_EOL;
 	$input_rating .= 'star-2||0'.PHP_EOL;
 	$input_rating .= 'star-3||0'.PHP_EOL;
 	$input_rating .= 'star-4||0'.PHP_EOL;
 	$input_rating .= 'star-5||0'.PHP_EOL;
 		
-	// Create ratingdata .txt file								
+	// Создать файл рейтинговых данных .txt								
 	$ratingfile = 'data/rating/'.$unique_id.'.txt';
 
 	file_put_contents($ratingfile,$input_rating);
 					
-	$result = '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;<b>'.$title.'</b> has been added!</div>';
+	$result = '<div class="alert alert-success w-100"><b>&check;</b>&nbsp;<b>'.$title.'</b> добавлено!</div>';
 	
 }
 ?>
@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- jQuery core -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- API key for TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/cu9iuv1soi8lkx4dfa0qp167qpr7pw81y9rj9n42dvtj1mch/tinymce/5/tinymce.min.js"></script> 
+<script src="tinymce/tinymce.min.js"></script>
 
 
 </head>
@@ -145,18 +145,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-md-9 col-lg-9 my-4">               
 				<div class="maincolumn">
 				<?php echo $result; ?>
-					<h5>Add an Article</h5>
+					<h5>Добавить статью</h5>
 					
 					<div class="result"></div> <!-- ajax callback -->
 
-					<a class="float-left" href="admin.php">Back to all articles</a>
+					<a class="float-left" href="admin.php">Вернуться ко всем статьям</a>
 					<br /><br />					
 					
 					<form name ="entry" id="entry" action="add.php" method="POST" role="form" enctype="multipart/form-data">
 					
 						<div class="control-group form-group">
 							<select class="selectbox form-control" name="category">	
-							<option value="" selected disabled>Choose category</option> 
+							<option value="" selected disabled>Выберите категорию</option> 
 							<?php 														
 								$arr_length = count($all_categories); // count the number of categories							
 								// show all categories														
@@ -171,34 +171,34 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 																		
 						<div class="control-group form-group">
 							<div class="controls">
-								<input class="form-control firstname" name="title" type="text" placeholder="Title" required>
+								<input class="form-control firstname" name="title" type="text" placeholder="Заголовок" required>
 							</div>
 						</div>
 											
 						<div class="control-group form-group">
 							<div class="controls">
-									<textarea class="tinymce form-control custom-control description" name="description" placeholder="Description"></textarea>						
+									<textarea class="tinymce form-control custom-control description" name="description" placeholder="Описание"></textarea>						
 							</div>
 						</div>
 						<div class="control-group form-group">
 							<div class="controls">
-								<input class="form-control number" name="price" type="text" placeholder="Price">
+								<input class="form-control number" name="price" type="text" placeholder="Цена">
 							</div>
 						</div>
 						<div class="control-group form-group">
 							<div class="controls">
-								Select <b>main image (single)</b> to upload: Max: <b>2 Mb</b> Allowed extensions: <b>jpg jpeg png gif</b>							
+								<b>Выберите основное изображение (одиночное) для загрузки: макс: <b>2 МБ.</b> Расширения: <b>jpg jpeg png gif</b>							
 								<input type="file" name="main_image" class="image form-control-file border" />
 							</div>
 						</div>	
 						<div class="control-group form-group">
 							<div class="controls">
-								Select <b>more images (multiple)</b> to upload: Max: <b>2 Mb</b> Allowed extensions: <b>jpg jpeg png gif</b>							
+								<b>Дополнительные изображения (несколько)</b> для загрузки: макс: <b>2 МБ.</b> Расширения: <b>jpg jpeg png gif</b>							
 								<input type="file" name="image[]" class="image form-control-file border" multiple />
 							</div>
 						</div>						
 																		
-						<button type="submit" id="cf-submit" name="submit" class="btn btn-primary">SUBMIT</button>	
+						<button type="submit" id="cf-submit" name="submit" class="btn btn-primary">Сохранить</button>	
 													
 					</form>
 											
@@ -208,8 +208,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</div> <!-- end col 9 -->
 			<div class="col-md-3 col-lg-3 my-4">
 				<div class="sidecolumn">
-					<h5>Sidecolumn</h5>
-						Place for some stuff here																				
+					<h5>Боковая колонка</h5>
+						Место для чего-нибудь здесь																			
 				</div>
 				
 			</div>
@@ -221,13 +221,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <script>
-//tiny texteditor
-tinyMCE.init({
+   //tiny texteditor
+   tinyMCE.init({
 	selector : ".tinymce",
 	plugins: "emoticons link preview wordcount",
 	elementpath: false,
+	language: "ru",
 	
-	menubar: false,
+	menubar: true,
 	toolbar: 'undo redo | bold italic underline | fontsizeselect | link | emoticons | preview | wordcount',
 	  
 	height: 300,
@@ -239,6 +240,7 @@ tinyMCE.init({
 	mobile: {
 		theme: 'silver',
 		plugins: 'emoticons link preview wordcount',
+		language: "ru",
 		toolbar: 'undo redo | bold italic underline | fontsizeselect | link | emoticons | preview | wordcount'
 	}	
 	
@@ -246,7 +248,6 @@ tinyMCE.init({
       
 
 </script>
-
 </body>
 </html>
 
