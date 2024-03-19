@@ -3,21 +3,19 @@
 
 /*set your login username and pasword for admin.php*/
 $admin_name = 'admin'; // admin username
-$admin_passw = 'password1'; // admin password
+$admin_passw = 'admin'; // admin password
 
-$date_format = date('d M Y H:i'); // set date format; see: https://www.php.net/manual/en/datetime.formats.date.php
+$date_format = date('d.m.y'); // set date format; see: https://www.php.net/manual/en/datetime.formats.date.php
 $entriesperpage = 6; // entries (articles) per page to show; 
 $pagination_range = 2; // pagination_range of num links to show
 $all_categories = array( // edit and add name of the categories to your own needs 
-	'Road bikes',
-	'MTB bikes',
-	'City bikes',
-	'Electric bikes',
-	'Other 1',
-	'Other 2',
-	'Other 3'
+	'Декоративка',
+	'Гипсакартон',
+	'Полы',
+	'Малярка',
+	'Плотник'
 );
-$valuta = '&euro;'; // set your own valuta
+$valuta = '&#8381;'; // set your own valuta
 $allowed_ext = array('jpg','jpeg','png','gif'); // allowed extensions for image upload
 $max_uploadsize = 2000000; // 2 Mb; max file-size for image upload
 $max_chars = 1200; // max characters user can type for posting a review
