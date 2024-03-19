@@ -44,7 +44,7 @@
 					<a href="#1" class="click-trigger star-1" data-value="star-1" title="Vote 1 star">&#x2605;</a>
 				</div>
 				<div class="rating-votes float-left">
-					<?php echo $avg;?>&nbsp;Stars Votes: <?php echo array_sum($count);?>
+					<?php echo $avg;?>&nbsp;звезд Голосов: <?php echo array_sum($count);?>
 				</div>				
 			</div>
 			
@@ -55,7 +55,7 @@
 	   <div class="file-edit">	
 	   
 			<!-- Edit button -->
-			<button type="button" class="btn btn-secondary edit-file float-left" data-toggle="modal" data-target="#<?php echo $file_id.'-edit'; ?>">Edit</button>
+			<button type="button" class="btn btn-secondary edit-file float-left" data-toggle="modal" data-target="#<?php echo $file_id.'-edit'; ?>">Редактировать</button>
 			
 			<!-- Form delete -->
 			<form class="float-left" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" role="form">	
@@ -66,7 +66,7 @@
 				<?php } ?>
 				
 				<input type="hidden" name="delete_title" value="<?php echo $title; ?>" />	<!-- only for the echo -->			
-				<button class="btn btn-danger delete-file" type="submit" name="submit">Delete</button>				
+				<button class="btn btn-danger delete-file" type="submit" name="submit">Удалить</button>				
 			</form>
 																			
 			<?php 			
