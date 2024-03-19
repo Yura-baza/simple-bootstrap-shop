@@ -13,7 +13,7 @@ if(!isset($_SESSION['shop_login'])){
 	<div class="modal-content">
 	
 		<div class="modal-header">
-			<h3 class="modal-title">Edit: <i><?php echo $title; ?></i></h3>
+			<h3 class="modal-title">Изменить:  <i><?php echo $title; ?></i></h3>
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 		
 		</div>
@@ -26,7 +26,7 @@ if(!isset($_SESSION['shop_login'])){
 																																							
 				<!-- category -->
 				<div class="form-group">
-				    <label>Category:</label>
+				    <label>Категория:</label>
 				    <select class="selectbox form-control" name="set_category">
 					    <option value="<?php echo $category; ?>" selected><?php echo $category; ?></option> <!-- set current category as default -->
 						<?php 						
@@ -43,52 +43,52 @@ if(!isset($_SESSION['shop_login'])){
 				</div>
 				<!-- title -->
 				<div class="form-group">
-				    <label>Title:</label>
+				    <label>Заголовок:</label>
 				    <input class="form-control" type="text" name="title" value="<?php echo $title; ?>" />
 				</div>
 				<!-- description -->
 				<div class="form-group">
-				    <label>Description:</label>
+				    <label>Описание:</label>
 				    <textarea class="tinymce form-control" name="description" wrap="hard"><?php echo $description; ?></textarea>
 				</div>
 				<!-- price -->
 				<div class="form-group">
-				    <label>Price:</label>
+				    <label>Цена:</label>
 				    <input class="form-control" type="text" name="price" value="<?php echo $price; ?>" />
 				</div>
 				<!-- reset votes -->
 				<div class="form-check">
 				    <label class="form-check-label">
-					    <input type="checkbox" class="form-check-input" value="reset_votes" name="reset_votes">Reset Votes
+					    <input type="checkbox" class="form-check-input" value="reset_votes" name="reset_votes">Сбросить голоса
 				    </label>
 				</div>
 				<!-- reset ip's -->
 				<div class="form-check">
 				    <label class="form-check-label">
-					    <input type="checkbox" class="form-check-input" value="reset_ip" name="reset_ip">Reset IP's for votes
+					    <input type="checkbox" class="form-check-input" value="reset_ip" name="reset_ip">Сбросить IP для голосов
 				    </label>
 				</div>
 				<!-- main image -->
 				<div class="form-group">
-				    <label class="text-success">Current main image:</label>
+				    <label class="text-success">Текущее основное изображение:</label>
 				    <img src="<?php echo $main_image; ?>" width="100" />
 				</div>
 				<!-- replace main image -->
 				<div class="form-group">
-				    <label class="text-warning">Replace main image (single):</label>
+				    <label class="text-warning">Заменить основное изображение (одиночное):</label>
 				    <input type="hidden" name="current_main_image" value="<?php echo $main_image; ?>" /> <!-- current main image -->
 					<input class="form-control-file-border" type="file" name="new_main_image" />
 				</div>
 				<!-- other images -->
 				<div class="form-group">
-				    <label class="text-success">Current other images:</label>
+				    <label class="text-success">Текущие другие изображения:</label>
 				    <?php foreach($image_array as $image) { ?>
 					<img src="<?php echo $image; ?>" width="100" />
 					<?php } ?>
 				</div>
 				<!-- replace other images -->
 				<div class="form-group">
-				    <label class="text-warning">Replace other images (multiple):</label>
+				    <label class="text-warning">Заменить другие изображения (несколько):</label>
 				    <?php foreach($image_array as $image) { ?>
 					<input type="hidden" name="current_image[]" value="<?php echo $image; ?>" /> <!-- current other images -->
 					<?php } ?>
@@ -97,7 +97,7 @@ if(!isset($_SESSION['shop_login'])){
 								
 				<br />
 				
-				<button class="btn btn-primary btn-block" type="submit" name="submit">Update</button>	
+				<button class="btn btn-primary btn-block" type="submit" name="submit">Обновить</button>	
 										
 			</form>
 					
