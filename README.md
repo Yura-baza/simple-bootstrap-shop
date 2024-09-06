@@ -1,11 +1,5 @@
 # простой-динамический-бутстрап-магазин
 Простой магазин Bootstrap 4; написано на PHP
-
-На основе https://github.com/BlackrockDigital/startbootstrap-shop-homepage и
-
-https://startbootstrap.com/templates/shop-homepage/
-
-
 * База данных не требуется.
 * Все данные хранятся в плоских текстовых файлах.
 * Текстовое поле Tinymce
